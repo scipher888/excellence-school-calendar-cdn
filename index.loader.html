@@ -13,7 +13,8 @@
 <script>
 (async()=>{
   const v='e877931cdd';
-  const urls=[`/index.zlib.p1?v=${v}`,`/index.zlib.p2?v=${v}`,`/index.zlib.p3?v=${v}`,`/index.zlib.p4?v=${v}`,`/index.zlib.p5?v=${v}`,`/index.zlib.p6?v=${v}`,`/index.zlib.p7?v=${v}`,`/index.zlib.p8?v=${v}`];
+  const base='https://cdn.jsdelivr.net/gh/scipher888/excellence-school-calendar-cdn@f2d004b2b07729b15abac6400d913afd60b83b76';
+  const urls=[1,2,3,4,5,6,7,8].map(i=>base+'/index.zlib.p'+i+'?v='+v);
   const bufs=await Promise.all(urls.map(u=>fetch(u).then(r=>{if(!r.ok)throw new Error(u+' '+r.status);return r.arrayBuffer()})));
   let n=0; for(const b of bufs) n+=b.byteLength;
   const bin=new Uint8Array(n); let o=0;
