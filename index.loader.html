@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>School · excellence</title>
+<link rel="manifest" href="/manifest.json"/>
+<link rel="icon" href="/favicon.ico" sizes="any"/>
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<meta name="theme-color" content="#2a9d8f"/>
+<meta name="application-name" content="School · excellence"/>
+<meta name="apple-mobile-web-app-title" content="School"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+</head><body>
+<script>
+(async()=>{
+  const v='e877931cdd';
+  const urls=[`/index.zlib.p1?v=${v}`,`/index.zlib.p2?v=${v}`,`/index.zlib.p3?v=${v}`,`/index.zlib.p4?v=${v}`,`/index.zlib.p5?v=${v}`,`/index.zlib.p6?v=${v}`,`/index.zlib.p7?v=${v}`,`/index.zlib.p8?v=${v}`];
+  const bufs=await Promise.all(urls.map(u=>fetch(u).then(r=>{if(!r.ok)throw new Error(u+' '+r.status);return r.arrayBuffer()})));
+  let n=0; for(const b of bufs) n+=b.byteLength;
+  const bin=new Uint8Array(n); let o=0;
+  for(const b of bufs){bin.set(new Uint8Array(b),o);o+=b.byteLength}
+  const raw=bin.slice(2,-4);
+  const ds=new DecompressionStream('deflate-raw');
+  const stream=new Blob([raw]).stream().pipeThrough(ds);
+  const html=new TextDecoder().decode(await new Response(stream).arrayBuffer());
+  document.open();document.write(html);document.close();
+})().catch(e=>{document.body.textContent='Load failed: '+e;console.error(e)});
+</script>
+<noscript>JavaScript required.</noscript>
+</body></html>
