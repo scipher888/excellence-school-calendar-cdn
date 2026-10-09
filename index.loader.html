@@ -13,7 +13,7 @@
 <script>
 (async()=>{
   const v='687c356d98';
-  const base='https://cdn.jsdelivr.net/gh/scipher888/excellence-school-calendar-cdn@d8b3c38eb4de94703f6e8c3a565c526947083760';
+  const base='https://cdn.jsdelivr.net/gh/scipher888/excellence-school-calendar-cdn@59d1bffaec87ecc3dd736ab5733972cd77b64772';
   const urls=[1,2,3,4,5,6,7,8].map(i=>base+'/index.zlib.p'+i+'?v='+v);
   const bufs=await Promise.all(urls.map(u=>fetch(u).then(r=>{if(!r.ok)throw new Error(u+' '+r.status);return r.arrayBuffer()})));
   let n=0; for(const b of bufs) n+=b.byteLength;
