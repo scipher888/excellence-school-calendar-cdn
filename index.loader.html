@@ -12,8 +12,8 @@
 </head><body>
 <script>
 (async()=>{
-  const v='a7e22902bc';
-  const base='https://cdn.jsdelivr.net/gh/scipher888/excellence-school-calendar-cdn@a145dd05f79d26db28b1535d78f09789bae404e4';
+  const v='4a2ec58cb5';
+  const base='https://cdn.jsdelivr.net/gh/scipher888/excellence-school-calendar-cdn@3e26269167347b3b12fbaeeac5f7327c6f3de5ea';
   const urls=[1,2,3,4,5,6,7,8].map(i=>base+'/index.zlib.p'+i+'?v='+v);
   const bufs=await Promise.all(urls.map(u=>fetch(u).then(r=>{if(!r.ok)throw new Error(u+' '+r.status);return r.arrayBuffer()})));
   let n=0; for(const b of bufs) n+=b.byteLength;
